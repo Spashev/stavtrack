@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+
+# local env files
+.env.local
+.env.*.local
