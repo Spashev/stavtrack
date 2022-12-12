@@ -28,7 +28,7 @@ class VehicleUpdateRequest extends FormRequest
             'model' => 'sometimes|string',
             'vin' => 'sometimes|min:11|max:11',
             'year' => 'sometimes|min:4|max:4',
-            'vehicle_type_id' => 'sometimes|exists:vehicle_types,id',
+            'type' => 'sometimes|exists:vehicle_types,id',
             'user_id' => 'sometimes|exists:users,id',
             'vehicle_attribute_id' => 'sometimes|exists:vehicle_attributes,id',
             'status' => ['sometimes', Rule::in(['active', 'under repair', 'sold', 'not used'])]

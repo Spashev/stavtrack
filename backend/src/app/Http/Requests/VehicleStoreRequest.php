@@ -28,7 +28,7 @@ class VehicleStoreRequest extends FormRequest
             'model' => 'required|string',
             'vin' => 'required|min:11|max:11',
             'year' => 'required|min:4|max:4',
-            'vehicle_type_id' => 'required|exists:vehicle_types,id',
+            'type' => 'required|exists:vehicle_types,id',
             'user_id' => 'required|exists:users,id',
             'status' => ['required', Rule::in(['active', 'under repair', 'sold', 'not used'])]
         ];

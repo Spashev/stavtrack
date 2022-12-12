@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('vin', 11);
             $table->string('year', 4);
             $table->string('status');
-            $table->foreignId('vehicle_type_id')->constrained('vehicle_types');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('vehicle_type_id')->nullable()->constrained('vehicle_types')->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }

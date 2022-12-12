@@ -44,9 +44,9 @@ class VehicleTypeController extends BaseController
         }
     }
 
-    public function destroy(VehicleTypeDeleteRequest $type)
+    public function destroy(VehicleType $type)
     {
-        VehicleType::where('id', $type->id)->delete();
+        $type->delete();
 
         return $this->sendResponse([], 'Vehicle type deleted successfully.');
     }

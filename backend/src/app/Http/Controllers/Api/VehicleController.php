@@ -22,7 +22,10 @@ class VehicleController extends BaseController
     {
         try {
             $userId = $request->user()->id;
-            $vehicle = Vehicle::create($request->only('model', 'vin', 'year', 'vehicle_type_id', 'status') + ['user_id' => $userId]);
+            $vehicle = Vehicle::create($request->only('model', 'vin', 'year', 'status') + [
+                'user_id' => $userId,
+                'vehicle_type_id' => $request->type
+            ]);
 
             VehicleAttribute::create([
                 'body' => json_encode($request->attribute),
@@ -47,7 +50,7 @@ class VehicleController extends BaseController
     public function update(VehicleUpdateRequest $request, Vehicle $vehicle)
     {
         try {
-            $vehicle->update($request->only('model', 'vin', 'year', 'vehicle_type_id', 'vehicle_attribute_id', 'status'));
+            $vehicle->update($request->only('model', 'vin', 'year', 'status') + ['vehicle_type_id' => $request->type]);
 
             VehicleAttribute::where('vehicle_id', $vehicle->id)->delete();
             VehicleAttribute::create([
@@ -65,9 +68,9 @@ class VehicleController extends BaseController
         }
     }
 
-    public function destroy(VehicleDeleteRequest $vehicle)
+    public function destroy(Vehicle $vehicle)
     {
-        Vehicle::where('id', $vehicle->id)->delete();
+        $vehicle->delete();
 
         return $this->sendResponse([], 'Vehicle deleted successfully.');
     }

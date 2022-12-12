@@ -13,7 +13,7 @@ class VehicleResource extends JsonResource
             'model' => $this->model,
             'vin' => $this->vin,
             'year' => $this->year,
-            'vehicle_type_id' => $this->type->name,
+            'type' => $this->type->name,
             'user' => $this->user->name,
             'status' => $this->status,
             'attribute' => json_decode($this->attribute ? $this->attribute->body : ''),
